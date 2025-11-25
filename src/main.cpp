@@ -1,18 +1,27 @@
 #include <Arduino.h>
+#include <Wifi.h>
 
-// put function declarations here:
-int myFunction(int, int);
+  const char* ssid = "是不是很想用網路啊";
+  const char* passwords = "12210531";
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
-}
+  void setup() {
+    Serial.begin(115200);
+    WiFi.begin(ssid, passwords);
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+    while(WiFi.status()!=WL_CONNECTED){
+        delay(500);
+        Serial.print("connecting...");
+    }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
+    Serial.println("WiFi Connected");
+    Serial.print("My IP is ");
+    Serial.println(WiFi.localIP());
+
+    Serial.print("Submask = ");
+    Serial.println(WiFi.localIP());
+
+  }
+
+  void loop() {
+    
+  }
